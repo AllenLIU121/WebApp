@@ -1,0 +1,172 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <h1>
+            JP TEAM FITNESS (BETA)
+        </h1>
+    </div>
+    <div class="main-pic">
+        <img src="running.jpg" alt="Running guy">
+    </div>
+    <div class="main">
+        <ol>
+        </ol>
+    </div>
+    <div><button onclick="myinput()">Start a new thread</button></div>
+    <script>var defaultThreads = [
+        {
+            id : Math.floor((Math.random() * 100000) + 1),
+            title: "Lifting Question 1: How do I start as a complete beginner?",
+            author: "M.Rizvi",
+            date: Date.now(),
+            content: "Thread content",
+            comments: [
+                {
+                    author: "M.Rizvi",
+                    date: Date.now(),
+                    content: "Hey there, good question. Have you looked at the 5X5 program?"
+                },
+                {
+                    author: "Timothy",
+                    date: Date.now(),
+                    content: "Hi, no I have not!"
+                },
+                {
+                    author: "M.Rizvi",
+                    date: Date.now(),
+                    content: "Please take a look at Stronglifts 5X5, it is a good start!"
+                }
+            ]
+        },
+        {
+            id: Math.floor((Math.random() * 100000) + 1),
+            title: "Running goals for the first year (beginner)",
+            author: "Z.Liu",
+            date: Date.now(),
+            content: "Thread content",
+            comments: [
+                {
+                    author: "Z.Liu",
+                    date: Date.now(),
+                    content: "Hi, what are your current stats?"
+                },
+                {
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Hi, I can do 5KM in 30 minutes"
+                }
+            ]
+        },
+        {
+            id: Math.floor((Math.random() * 100000) + 1),
+            title: "Dealing with injuries, back pain for 4 months",
+            author: "M.Hamzah",
+            date: Date.now(),
+            content: "Thread content",
+            comments: [
+                {
+                    author: "Z.Liu",
+                    date: Date.now(),
+                    content: "Hi, it is best to consult a physician"
+                },
+                {
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Thanks, that is probably the first step."
+                }
+            ]
+        },
+        {
+            id: Math.floor((Math.random() * 100000) + 1),
+            title: "End of testing beta",
+            author: "M.Hamzah",
+            date: Date.now(),
+            content: "Thread content",
+            comments: [
+                {
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Looks good for now"
+                },
+                {
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Thanks, that is probably the first step."
+                }
+            ]
+        }
+    ]
+
+    function display(threadsin){
+        var threads = threadsin;
+        console.log('test');
+        console.log(threads);
+        var container = document.querySelector('ol');
+        for (let thread of threads) {
+            var html = `
+            <li class="row">
+                <a href="/thread.html?${thread.id}">
+                    <h4 class="title">
+                        ${thread.title}
+                    </h4>
+                    <div class="bottom">
+                        <p class="timestamp">
+                            ${new Date(thread.date).toLocaleString()}
+                        </p>
+                        <p class="comment-count">
+                            ${thread.comments.length} comments
+                        </p>
+                    </div>
+                </a>
+            </li>
+            `
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    }
+    display(defaultThreads);
+    </script>
+	<script>
+		function myinput(){
+            console.log(threads);
+
+			var question = prompt("Enter Your Question:");
+    
+			if (question == null || question == "") {
+				document.getElementById("msg").innerHTML = "You did not enter anything. Please enter your name again";
+			}
+            else{
+                var newThread = {
+                    id: Math.floor((Math.random() * 100000) + 1),
+                    title: question,
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Thread content",
+                    comments:  [{
+                    author: "M.Hamzah",
+                    date: Date.now(),
+                    content: "Looks good for now"
+                    }]
+                }
+                defaultThreads.push(newThread);
+                empty = [];
+                empty.push(newThread);
+                console.log(threads);
+                console.log(threads);
+                display(empty);
+            
+            }
+
+		}
+    </script>
+    
+    <script>
+    var threads = defaultThreads
+    if (localStorage && localStorage.getItem('threads')) {
+        threads = JSON.parse(localStorage.getItem('threads'));
+    } else {
+        threads = defaultThreads;
+        localStorage.setItem('threads', JSON.stringify(defaultThreads));
+    }</script>
+</body>
