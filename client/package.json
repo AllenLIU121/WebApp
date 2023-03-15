@@ -9,6 +9,9 @@
     "both": "concurrently --kill-others \"npm run serve\" \"npm run my-app\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "16.0.0"
+  }
   "author": "",
   "license": "ISC",
   "dependencies": {
